@@ -14,13 +14,9 @@ using  namespace  std;
 */
 
 template<class TYPE>
-Array<TYPE>::Array(int upperB, int lowerB)
-: m_upperbound(upperB), m_lowerbound(lowerB), m_length(upperB - lowerB), fail("default"){
+Array<TYPE>::Array(int start_index, int length)
+: m_upperbound(start_index + length), m_lowerbound(start_index), m_length(length), fail("default"){
 
-
-	if (lowerB > upperB){
-		throw(ERR_BAD_BOUNDS);
-	}
 	m_array = new TYPE[m_upperbound - m_lowerbound + 1];
 	if (!m_array){
 		throw(ERR_MEM_ALLOC);
@@ -84,7 +80,6 @@ TYPE &Array<TYPE>::operator[](int idx)
 {
 	if (idx <lowerBound() || upperBound() < idx){
 		fail.setMessage("Out of Bounds");
-		cout << fail;
 		abort();
 	}
 	return m_array[idx - m_lowerbound];

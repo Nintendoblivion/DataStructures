@@ -30,8 +30,7 @@ class Array {
 public:
 	Array();
 	
-	Array(int upperB, int lowerB = 0);
-	Array(const Array &copy);
+	Array(int start_index, int length);
 	~Array();
 
 	int upperBound() const { return m_upperbound; }
