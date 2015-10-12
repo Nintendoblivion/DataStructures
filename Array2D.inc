@@ -13,7 +13,6 @@
 *			Output: none
 ****************************************************************/
 
-
 /**************************************************************
 *	  Purpose:  to create an Array2D object
 *
@@ -37,7 +36,7 @@ Array2D<T>::Array2D(int row, int col)
 *
 *			Exit:  a copied array
 ****************************************************************/
-template <class T>
+template <class T> 
 Array2D<T>::Array2D(const Array2D &arrayC)
 {
 	m_rows = arrayC.m_rows;
