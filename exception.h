@@ -1,20 +1,36 @@
 #include <iostream>
 
 using namespace std;
+/**************************************************************
+*	Author: Andrew Arizala
+* Date Created:			10/10/15
+* Last Modification Date:	10/10/15
+* Lab Number:			CST 211 Assignment 2
+* Filename:				exception.h
+*		 
+*
+*			Overview: To output messages for exceptions
+*			
+*			Input: A string
+*
+*			Output: None
+****************************************************************/
 
 class Exception{
 
-	friend ostream &operator<<(ostream in, const Exception &thing) { return in << thing.m_msg; }
+	
 
 public:
 	Exception();
-	Exception(char *msg);
+	Exception(const char *msg);
 	~Exception();
 
 	Exception &operator=(const Exception &rhs);
 
-	const char getMessage() { return *m_msg; }
+	char getMessage() const;
 	void setMessage(const char *msg);
+
+	friend ostream &operator<<(ostream out, const Exception &thing);
 
 	
 
