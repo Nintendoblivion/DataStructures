@@ -1,10 +1,17 @@
-/*
-Author: Andrew Arizala
-
-Description: Header for Array class and Safe Array Template Class
-
-
-*/
+/**************************************************************
+*	Author: Andrew Arizala
+* Date Created:			10/10/15
+* Last Modification Date:	10/10/15
+* Lab Number:			CST 211 Assignment 1
+* Filename:				array.h
+*
+*
+*			Overview: To properly allocate data for an array
+*
+*			Input: A starting index and size for the array
+*
+*			Output: An array
+****************************************************************/
 #include "refCounter.h"
 #include "exception.h"
 
@@ -64,13 +71,6 @@ private :
 };
 
 
-/*
-* Constraints for the TYPE datatype for the SafeArray<> template class:
-*
-*    Same as Array<>
-*
-*
-*/
 
 #include "array.inc"
 

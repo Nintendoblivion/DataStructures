@@ -1,18 +1,29 @@
-/*
-Author: Andrew Arizala
-
-Description: File to store the template code
-
-
-*/
+/**************************************************************
+*	Author: Andrew Arizala
+* Date Created:			10/10/15
+* Last Modification Date:	10/10/15
+* Lab Number:			CST 211 Assignment 1
+* Filename:				array.inc
+*
+*
+*			Overview: To properly allocate data for an array
+*
+*			Input: A starting index and size for the array
+*
+*			Output: An array
+****************************************************************/
 
 #include  <iostream>
 using  namespace  std;
 
-/*
-	Array<>
-*/
-
+/**************************************************************
+*	  Purpose:  Construcotr for the Exception class
+*
+*		 Entry: The Array starting index
+*				The Array size
+*
+*			Exit: none
+****************************************************************/
 template<class TYPE>
 Array<TYPE>::Array(int start_index, int length)
 : m_upperbound(start_index + length), m_lowerbound(start_index), m_length(length){
@@ -24,11 +35,27 @@ Array<TYPE>::Array(int start_index, int length)
 	}
 }
 
+
+/**************************************************************
+*	  Purpose:  Arrayy Class deconstructor to clean up the class
+*
+*		 Entry: none
+*
+*			Exit: none
+****************************************************************/
 template<class TYPE>
 Array<TYPE>::~Array(){
 	clear();
 }
 
+
+/**************************************************************
+*	  Purpose:  To override the assignment operator
+*
+*		 Entry: An array to set the array = to
+*
+*			Exit: An array of the same kind
+****************************************************************/
 template<class TYPE>
 Array<TYPE> &Array<TYPE>::operator=(const Array<TYPE> &rhs){
 
@@ -41,6 +68,14 @@ Array<TYPE> &Array<TYPE>::operator=(const Array<TYPE> &rhs){
 
 }
 
+
+/**************************************************************
+*	  Purpose:  delete if the data is the last remaining
+*
+*		 Entry: none
+*
+*			Exit: none
+****************************************************************/
 template<class TYPE>
 void Array<TYPE>::clear(){
 
@@ -50,6 +85,14 @@ void Array<TYPE>::clear(){
 
 }
 
+
+/**************************************************************
+*	  Purpose:  Copy constructor for the Array template class
+*
+*		 Entry: An array that will be copied
+*
+*			Exit: none
+****************************************************************/
 template<class TYPE>
 void Array<TYPE>::copy(const Array<TYPE> &rhs){
 
@@ -65,6 +108,14 @@ void Array<TYPE>::copy(const Array<TYPE> &rhs){
 
 }
 
+
+/**************************************************************
+*	  Purpose:  To override the [] operator for easy array access
+*
+*		 Entry: the value of the array
+*
+*			Exit: An element of the array
+****************************************************************/
 template<class TYPE>
 TYPE &Array<TYPE>::operator[](int idx) const 
 {
@@ -75,6 +126,14 @@ TYPE &Array<TYPE>::operator[](int idx) const
 	return m_array[idx - m_lowerbound];
 }
 
+
+/**************************************************************
+*	  Purpose:  To override the [] operator for easy array access
+*
+*		 Entry: the value of the array
+*
+*			Exit: An element of the array
+****************************************************************/
 template<class TYPE>
 TYPE &Array<TYPE>::operator[](int idx)
 {
@@ -86,6 +145,13 @@ TYPE &Array<TYPE>::operator[](int idx)
 }
 
 
+/**************************************************************
+*	  Purpose:  To reset the length of the array
+*
+*		 Entry: the new array length
+*
+*			Exit: none
+****************************************************************/
 template<class TYPE>
 void Array<TYPE>::setLength(int length)
 {
@@ -110,6 +176,14 @@ void Array<TYPE>::setLength(int length)
 	delete temp_array;
 }
 
+
+/**************************************************************
+*	  Purpose:  To reset the lower bound of the array
+*
+*		 Entry: The new start for the array
+*
+*			Exit: none
+****************************************************************/
 template<class TYPE>
 void Array<TYPE>::setStartIndex(int start_index)
 {

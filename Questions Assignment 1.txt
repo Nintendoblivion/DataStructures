@@ -1,0 +1,11 @@
+What are the considerations you had to include in your operator= function?
+If they are already the same
+
+What is the similarity and difference between copy constructor and operator= functions?
+Copy contruction remakes the object using the data from the old object
+
+What steps did you take to ensure no memory leaks?
+Checked if memory was properly allocated. And throw an error if that is the case
+
+In terms of big O how long would it take to find an element of this array? How could this be improved? What would the expression become?
+It is O(n), but sorting the data would make it O(log(n))
