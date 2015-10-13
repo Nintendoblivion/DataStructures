@@ -52,10 +52,17 @@ Array2D<T>::Array2D(int row, int col)
 template <class T> 
 Array2D<T>::Array2D(const Array2D &arrayC)
 {
-	m_rows = arrayC.m_rows;
-	m_cols = arrayC.m_cols;
+	m_rows = arrayC.getRow();
+	m_cols = arrayC.getColumn();
 	m_dataAllocation(m_array, m_rows, m_cols);
-	m_dataTransfer(arrayC.m_array, m_rows, true, false);
+	for (int idx = 0; idx < m_rows; idx++)
+	{
+		T *memberElement = m_array[idx];
+		for (int id = 0; id < m_cols; id++)
+		{
+			memberElement[id] = arrayC[idx][id];
+		}
+	}
 }
 
 /**************************************************************
@@ -84,11 +91,21 @@ Array2D<T> &Array2D<T>::operator=(const Array2D<T> &rhs)
 	if (this != &rhs)
 	{ 
 		delete[]m_array;
-		m_dataAllocation(m_array, rhs.m_rows, rhs.m_cols);
-		m_dataTransfer(rhs.m_array, rhs.m_rows, rhs.cols, false);
+		m_rows = arrayC.getRow();
+		m_cols = arrayC.getColumn();
+		m_dataAllocation(m_array, m_rows, m_cols);
+		for (int idx = 0; idx < m_rows; idx++)
+		{
+			T *memberElement = m_array[idx];
+			for (int id = 0; id < m_cols; id++)
+			{
+				memberElement[id] = rhs[idx][id];
+			}
+		}
+		
 	}
 
-	return this;
+	return *this;
 }
 
 /**************************************************************

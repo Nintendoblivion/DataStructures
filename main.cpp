@@ -19,16 +19,32 @@ int main()
 		}
 
 		const Array2D<int> test2(test);
-		cout << test2[0][0];
+		for (int idx = 0; idx < 2; idx++)
+		{
+			for (int id = 0; id < 5; id++)
+			{
+				cout << test2[idx][id] << " ";
+			}
+			cout << endl;
+		}
+
 
 		Array2D<int> test3 = test;
+		for (int idx = 0; idx < 2; idx++)
+		{
+			for (int id = 0; id < 5; id++)
+			{
+				cout << test3[idx][id] << " ";
+			}
+			cout << endl;
+		}
 
 		test.setColumn(4);
 		test.setRow(3);
 		test.getColumn();
 		test.getRow();
 	}
-	catch(Exception e){
+	catch(Exception &e){
 		cout << e.getMessage();
 	}
 	system("pause");
