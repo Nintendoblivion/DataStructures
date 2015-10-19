@@ -1,9 +1,0 @@
-1 What considerations would have to be taken to add a columns class? What would be the advantage?
-A columns class would be used if you are trying to access a 2D array with the column first then the row second. You would need a way to differentiate between Column access and Row access.
-
-2. What is forward declaration and how is it used? Why does it work?
-Forward declaration is basically declaring that a function will exist without specifying what the function does. Its used to inform classes and function that certain things exist and to allocate data as necessary ahead of time. Used when two classes are dependent on each other. 
-
-3. What would the code look like to rotate a 2d array by 90 degrees. What would be the big-O notation for this operation
-You would need to copy the array then replace the objects in the array using the copied array by using for loops to assign in the order you want them to go in.
-The big-O would be O(n^2)
