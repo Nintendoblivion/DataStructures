@@ -1,6 +1,30 @@
+/**************************************************************
+*	Author: Andrew Arizala
+* Date Created:			10/17/15
+* Last Modification Date:	10/19/15
+* Lab Number:			CST 211 Lab 1
+* Filename:				MineSweeper.cpp
+*
+*
+*			Overview: A game of minesweeper
+*
+*			Input: The difficulty of the game
+*
+*			Output: none
+****************************************************************/
+
+
 #include"MineSweeper.h"
 
-MineSweeper::MineSweeper(difficulty in) : m_playing(true), m_dif(in)
+/**************************************************************
+*	  Purpose:  Constructor for the Minesweeper Game
+*				Creates the board for the game
+*
+*		Entry:  The difficulty of the board
+*
+*			Exit:	none
+****************************************************************/
+MineSweeper::MineSweeper(difficulty in) : m_dif(in)
 {
 	if (in == b)
 	{
@@ -19,80 +43,50 @@ MineSweeper::MineSweeper(difficulty in) : m_playing(true), m_dif(in)
 	}
 }
 
-void MineSweeper::turn()
+
+/**************************************************************
+*	  Purpose:  To run the turn and check if the game has been won or not
+*
+*		Entry:  none
+*
+*			Exit:	Returns a bool containing if the game 
+*					is still going
+****************************************************************/
+bool MineSweeper::turn()
 {
-	char in = 0;
-	int messUps = 0;
-	Point loc(10,10);
 	system("cls");
-	display_Difficulty();
 	game->displayBoard();
 	
 	if (!(game->winCheck() || game->loseCheck()))
 	{
-		do
-		{
-			if (messUps)
-			{
-				cout << "Invalid choice" << endl << endl;
-				system("pause");
-			}
-			system("cls");
-			display_Difficulty();
-			game->displayBoard();
-			cout << "Flag or turn(f/t):" << endl;
-			cin >> in;
-			messUps++;
-		} while (!(in == 'f' || in == 't'));
-
-		messUps = 0;
-		do
-		{
-			if (messUps)
-			{
-				cout << "Invalid choice" << endl << endl;
-				system("pause");
-			}
-			system("cls");
-			display_Difficulty();
-			game->displayBoard();
-
-			if (in == 'f')
-			{
-				cout << "Flag";
-			}
-			else
-			{
-				cout << "Turn";
-			}
-			cout << " spot (x,y):" << endl;
-			cin >> loc;
-			if (cin.fail())
-			{
-				throw(new Exception("Type input error"));
-			}
-			messUps++;
-		} while (!game->inBounds(loc));
-
-		flipMark(in, loc);
+		play();
+		return true;
 	}
 
 	else if (game->winCheck())
 	{
 		cout << endl << endl << "You Win!" << endl << endl;
 		system("pause");
-		m_playing = false;
 		system("cls");
+		return false;
 	}
 	else
 	{
 		cout << endl << endl << "You Lose!" << endl << endl;
 		system("pause");
-		m_playing = false;
 		system("cls");
+		return false;
 	}
 }
 
+/**************************************************************
+*	  Purpose:  turns or flags a  cell
+*
+*		Entry:  a char marking if it should be flagged or turns
+*				the location of the of cell
+*
+*			Exit:	none
+****************************************************************/
 void MineSweeper::flipMark(char in, Point loc)
 {
 	if (in == 'f')
@@ -105,26 +99,59 @@ void MineSweeper::flipMark(char in, Point loc)
 	}
 }
 
-bool MineSweeper::playing(){
-	return m_playing;
-}
-bool MineSweeper::playing() const{
-	return m_playing;
-}
-
-void MineSweeper::display_Difficulty()
+/**************************************************************
+*	  Purpose:  To play the game
+*
+*		Entry:  none
+*
+*			Exit:	none
+****************************************************************/
+void MineSweeper::play()
 {
-	cout << endl;
-	if (m_dif == b)
+	char in = 0;
+	Point loc(10, 10);
+	int messUps = 0;
+	do
 	{
-		cout << "[10x10 with 10 mines]" << endl;
-	}
-	else if (m_dif == i)
+		if (messUps)
+		{
+			cout << "Invalid choice" << endl << endl;
+			system("pause");
+		}
+		system("cls");
+		game->displayBoard();
+		cout << "Flag or turn(f/t):" << endl;
+		cin >> in;
+		messUps++;
+	} while (!(in == 'f' || in == 't'));
+
+	messUps = 0;
+	do
 	{
-		cout << "[16x16 with 40 mines]" << endl;
-	}
-	else
-	{
-		cout << "[16x32 with 100 mines]" << endl;
-	}
+		if (messUps)
+		{
+			cout << "Invalid choice" << endl << endl;
+			system("pause");
+		}
+		system("cls");
+		game->displayBoard();
+
+		if (in == 'f')
+		{
+			cout << "Flag";
+		}
+		else
+		{
+			cout << "Turn";
+		}
+		cout << " spot (x,y):" << endl;
+		cin >> loc;
+		if (cin.fail())
+		{
+			throw(new Exception("Type input error"));
+		}
+		messUps++;
+	} while (!game->inBounds(loc));
+
+	flipMark(in, loc);
 }

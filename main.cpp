@@ -93,10 +93,7 @@ int main(){
 	try{
 		while (keepPlay()){
 			MineSweeper game(select());
-			while (game.playing())
-			{
-				game.turn();
-			}
+			while (game.turn());
 		}
 		system("cls");
 		cout << "Thanks for Playing!" << endl << endl;
